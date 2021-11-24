@@ -77,10 +77,11 @@ root.geometry("%dx%d+%d+%d" % (size + (x, y)))
 #end of centering
 
 
-uname_label = tk.Label(root, text="Please select two signatures to compare:", font=("Helvetica", 14, "bold"))
-uname_label.place(x=90, y=50)
+uname_label = tk.Label(root, text="Please upload a signature to compare \nagainst the database. "
+, font=("Helvetica", 14, "bold"))
+uname_label.place(x=85, y=50)
 
-img1_message = tk.Label(root, text="Signature 1", font=("Helvetica", 14, "bold"))
+img1_message = tk.Label(root, text="Signature path", font=("Helvetica", 14, "bold"))
 img1_message.place(x=10, y=120)
 
 image1_path_entry = tk.Entry(root, font=10)
