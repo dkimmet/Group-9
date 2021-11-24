@@ -5,7 +5,8 @@ import os
 import cv2
 from numpy import result_type
 from signature import match
-
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 # Mach Threshold
 THRESHOLD = 85
@@ -31,11 +32,36 @@ def checkSimilarity(window, path1, path2):
     if(result <= THRESHOLD):
         messagebox.showerror("Failure: Signatures Do Not Match",
                              "Signatures are "+str(result)+f" % similar!!")
-        pass
+        
+        img1 = cv2.imread(path1)
+        img2 = cv2.imread(path2)
+        # create figure
+        fig = plt.figure(figsize=(10, 7))
+        #fig = pylab.gcf()
+        fig.canvas.manager.set_window_title('Human Verification')
+  
+        # setting values to rows and column variables
+        rows = 1
+        columns = 2
+
+        fig.add_subplot(rows, columns, 1)
+        plt.imshow(img1)
+        plt.axis('off')
+        plt.title("Received Signature from Doctor")
+
+        # Adds a subplot at the 2nd position
+        fig.add_subplot(rows, columns, 2)
+    
+        # showing image
+        plt.imshow(img2)
+        plt.axis('off')
+        plt.title("Doctors Verified Signature")
+        plt.show()
+        #pass
     else:
         messagebox.showinfo("Success: Signatures Match",
                             "Signatures are "+str(result)+f" % similar!!")
-    return True
+    #return True
 
 
 root = tk.Tk()
