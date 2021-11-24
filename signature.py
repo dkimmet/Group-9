@@ -17,12 +17,13 @@ def match(path1, path2):
     # resize images for comparison
     img1 = cv2.resize(img1, (300, 300))
     img2 = cv2.resize(img2, (300, 300))
-
+    best_file = path1
+    best_score = 0
     path = "./assets/"
     #for loop files in directory
     for file in os.listdir(path):
         # read the images
-        score=0
+        #score=0    might be needed for future use-------
         if file.endswith(".png"):
             print(file)
             # read the images     
@@ -35,18 +36,14 @@ def match(path1, path2):
             if score > 0.85:
                 similarity_value = "{:.2f}".format(ssim(img1, img3)*100)
                 messagebox.showinfo("Found","Signature file " + file + " matches")
-                return float(similarity_value)
+                return float(similarity_value), path+file
+            #find the best match
+            if score > best_score:
+                best_score = score
+                best_file = file
+                print("Print this here " + best_file, best_score) # remove later
 
 
-    
- #   similarity_value = "{:.2f}".format(ssim(img1, img2)*100)
-    # print("answer is ", float(similarity_value),
-    #       "type=", type(similarity_value))
   
-    return float(0)
+    return float(best_score), path + best_file
 
-
-# ans = match("D:\\Code\\Git stuff\\Signature-Matching\\assets\\1.png",
-#             "D:\\Code\\Git stuff\\Signature-Matching\\assets\\3.png")
-# print(ans)
-# print(type(ans))

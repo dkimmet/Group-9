@@ -24,13 +24,16 @@ def browsefunc(ent):
 
 
 def checkSimilarity(window, path1, path2):
-    result = match(path1=path1, path2=path2)
+
+    result, path3 = match(path1=path1, path2=path2)
+    print(result)
     if(result <= THRESHOLD):
-        messagebox.showerror("Failure: Signatures Do Not Match",
-                             "Signatures are "+str(result)+f" % similar!!")
+        messagebox.showerror("Signatures Do Not Match",
+                             "No matching signatures! Signature file " + path3 +
+                              " is the closest match at "+str(result)+f" %")
         
         img1 = cv2.imread(path1)
-        img2 = cv2.imread(path2)
+        img2 = cv2.imread(path3)
         # create figure
         fig = plt.figure(figsize=(10, 7))
         #fig = pylab.gcf()
@@ -51,7 +54,7 @@ def checkSimilarity(window, path1, path2):
         # showing image
         plt.imshow(img2)
         plt.axis('off')
-        plt.title("Doctors Verified Signature")
+        plt.title("Closest Signature Match")
         plt.show()
         #pass
     else:
