@@ -1,5 +1,6 @@
 import os
 import cv2
+from tkinter import messagebox
 from skimage.metrics import structural_similarity as ssim
 
 
@@ -33,6 +34,7 @@ def match(path1, path2):
             print(file, score)
             if score > 0.85:
                 similarity_value = "{:.2f}".format(ssim(img1, img3)*100)
+                messagebox.showinfo("Found","Signature file " + file + " matches")
                 return float(similarity_value)
 
 

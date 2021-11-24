@@ -55,7 +55,7 @@ def checkSimilarity(window, path1, path2):
         plt.show()
         #pass
     else:
-        messagebox.showinfo("Success: Signatures Match",
+        messagebox.showinfo("Success: Match Found",
                             "Signatures are "+str(result)+f" % similar!!")
     #return True
 
