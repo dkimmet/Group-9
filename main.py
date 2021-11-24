@@ -20,58 +20,10 @@ def browsefunc(ent):
     ent.delete(0, tk.END)
     ent.insert(tk.END, filename)  # add this
 
+#removed def capture_image_from_cam_into_temp(sign=1):
 
-def capture_image_from_cam_into_temp(sign=1):
-    cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+# def captureImage(ent,sign=1);
 
-    cv2.namedWindow("test")
-
-    # img_counter = 0
-
-    while True:
-        ret, frame = cam.read()
-        if not ret:
-            print("failed to grab frame")
-            break
-        cv2.imshow("test", frame)
-
-        k = cv2.waitKey(1)
-        if k % 256 == 27:
-            # ESC pressed
-            print("Escape hit, closing...")
-            break
-        elif k % 256 == 32:
-            # SPACE pressed
-            if not os.path.isdir('temp'):
-                os.mkdir('temp', mode=0o777)  # make sure the directory exists
-            # img_name = "./temp/opencv_frame_{}.png".format(img_counter)
-            if(sign == 1):
-                img_name = "./temp/test_img1.png"
-            else:
-                img_name = "./temp/test_img2.png"
-            print('imwrite=', cv2.imwrite(filename=img_name, img=frame))
-            print("{} written!".format(img_name))
-            # img_counter += 1
-    cam.release()
-    cv2.destroyAllWindows()
-    return True
-
-
-def captureImage(ent, sign=1):
-    if(sign == 1):
-        filename = os.getcwd()+'\\temp\\test_img1.png'
-    else:
-        filename = os.getcwd()+'\\temp\\test_img2.png'
-    # messagebox.showinfo(
-    #     'SUCCESS!!!', 'Press Space Bar to click picture and ESC to exit')
-    res = None
-    res = messagebox.askquestion(
-        'Click Picture', 'Press Space Bar to click picture and ESC to exit')
-    if res == 'yes':
-        capture_image_from_cam_into_temp(sign=sign)
-        ent.delete(0, tk.END)
-        ent.insert(tk.END, filename)
-    return True
 
 
 def checkSimilarity(window, path1, path2):
@@ -87,9 +39,20 @@ def checkSimilarity(window, path1, path2):
 
 
 root = tk.Tk()
-root.title("Signature Matching")
-root.geometry("500x700")  # 300x200
-uname_label = tk.Label(root, text="Compare Two Signatures:", font=10)
+root.title("Group 9 Verify Doctor Signature")
+root.geometry("500x400") # width x height
+#center root window
+root.update_idletasks()
+w = root.winfo_screenwidth()
+h = root.winfo_screenheight()
+size = tuple(int(_) for _ in root.geometry().split('+')[0].split('x'))
+x = w/2 - size[0]/2
+y = h/2 - size[1]/2
+root.geometry("%dx%d+%d+%d" % (size + (x, y)))
+#end of centering
+
+
+uname_label = tk.Label(root, text="Please select two signatures to compare:", font=("Helvetica", 14, "bold"))
 uname_label.place(x=90, y=50)
 
 img1_message = tk.Label(root, text="Signature 1", font=10)
