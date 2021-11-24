@@ -23,9 +23,9 @@ def browsefunc(ent):
 
 
 
-def checkSimilarity(window, path1, path2):
+def checkSimilarity(window, path1): #                  here path2
 
-    result, path3 = match(path1=path1, path2=path2)
+    result, path3 = match(path1=path1)  #              here   , path2=path2
     print(result)
     if(result <= THRESHOLD):
         messagebox.showerror("Signatures Do Not Match",
@@ -89,7 +89,7 @@ image1_path_entry.place(x=150, y=120)
 img1_browse_button = tk.Button(
     root, text="Browse", font=("Helvetica", 14), command=lambda: browsefunc(ent=image1_path_entry))
 img1_browse_button.place(x=400, y=120)
-
+"""
 image2_path_entry = tk.Entry(root, font=10)
 image2_path_entry.place(x=150, y=240)
 
@@ -99,12 +99,12 @@ img2_message.place(x=10, y=250)
 
 img2_browse_button = tk.Button(
     root, text="Browse", font=("Helvetica", 14), command=lambda: browsefunc(ent=image2_path_entry))
-img2_browse_button.place(x=400, y=240)
+img2_browse_button.place(x=400, y=240)"""
 
 compare_button = tk.Button(
     root, text="Compare", font=10, command=lambda: checkSimilarity(window=root,
                                                                    path1=image1_path_entry.get(),
-                                                                   path2=image2_path_entry.get(),))
+                                                                   ))       # here path2=image2_path_entry.get(),
 
 compare_button.place(x=200, y=320)
 root.mainloop()
