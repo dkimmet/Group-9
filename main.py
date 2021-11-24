@@ -55,15 +55,14 @@ root.geometry("%dx%d+%d+%d" % (size + (x, y)))
 uname_label = tk.Label(root, text="Please select two signatures to compare:", font=("Helvetica", 14, "bold"))
 uname_label.place(x=90, y=50)
 
-img1_message = tk.Label(root, text="Signature 1", font=10)
+img1_message = tk.Label(root, text="Signature 1", font=("Helvetica", 14, "bold"))
 img1_message.place(x=10, y=120)
 
 image1_path_entry = tk.Entry(root, font=10)
 image1_path_entry.place(x=150, y=120)
 
-img1_capture_button = tk.Button(
-    root, text="Capture", font=10, command=lambda: captureImage(ent=image1_path_entry, sign=1))
-img1_capture_button.place(x=400, y=90)
+
+
 
 img1_browse_button = tk.Button(
     root, text="Browse", font=10, command=lambda: browsefunc(ent=image1_path_entry))
@@ -75,9 +74,6 @@ image2_path_entry.place(x=150, y=240)
 img2_message = tk.Label(root, text="Signature 2", font=10)
 img2_message.place(x=10, y=250)
 
-img2_capture_button = tk.Button(
-    root, text="Capture", font=10, command=lambda: captureImage(ent=image2_path_entry, sign=2))
-img2_capture_button.place(x=400, y=210)
 
 img2_browse_button = tk.Button(
     root, text="Browse", font=10, command=lambda: browsefunc(ent=image2_path_entry))
