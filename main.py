@@ -65,19 +65,19 @@ image1_path_entry.place(x=150, y=120)
 
 
 img1_browse_button = tk.Button(
-    root, text="Browse", font=10, command=lambda: browsefunc(ent=image1_path_entry))
-img1_browse_button.place(x=400, y=140)
+    root, text="Browse", font=("Helvetica", 14), command=lambda: browsefunc(ent=image1_path_entry))
+img1_browse_button.place(x=400, y=120)
 
 image2_path_entry = tk.Entry(root, font=10)
 image2_path_entry.place(x=150, y=240)
 
-img2_message = tk.Label(root, text="Signature 2", font=10)
+img2_message = tk.Label(root, text="Signature 2", font=("Helvetica", 14, "bold"))
 img2_message.place(x=10, y=250)
 
 
 img2_browse_button = tk.Button(
-    root, text="Browse", font=10, command=lambda: browsefunc(ent=image2_path_entry))
-img2_browse_button.place(x=400, y=260)
+    root, text="Browse", font=("Helvetica", 14), command=lambda: browsefunc(ent=image2_path_entry))
+img2_browse_button.place(x=400, y=240)
 
 compare_button = tk.Button(
     root, text="Compare", font=10, command=lambda: checkSimilarity(window=root,
