@@ -21,10 +21,6 @@ def browsefunc(ent):
     ent.delete(0, tk.END)
     ent.insert(tk.END, filename)  # add this
 
-#removed def capture_image_from_cam_into_temp(sign=1):
-
-# def captureImage(ent,sign=1);
-
 
 
 def checkSimilarity(window, path1, path2):
@@ -86,9 +82,6 @@ img1_message.place(x=10, y=120)
 
 image1_path_entry = tk.Entry(root, font=10)
 image1_path_entry.place(x=150, y=120)
-
-
-
 
 img1_browse_button = tk.Button(
     root, text="Browse", font=("Helvetica", 14), command=lambda: browsefunc(ent=image1_path_entry))
