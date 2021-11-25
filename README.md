@@ -1,12 +1,8 @@
-# Signature-Matching
-Application to detect the similarity of two signatures.
+# Signature verification
 
-This Application helps mathematically evaluate similarity of two signatures. 
-Simply capture or upload the picture of both signatures to be compared.
-Both the images will be displayed on the screen that are being compared.
-The popup will show the percentage match of the signatures.
-The signatures are compared using structural_similarity in skimage.metrics package.
-
+This Application helps mathematically evaluate the similarity of the uploaded signature to the database. 
+When a match doesn't reach 85% certainty, the program will open a single window for the user to compare the next closest match.
+This program uses the skimage.metrics package.
 
 ## Prerequisites
 1. Python >=3.6
