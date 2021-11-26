@@ -2,7 +2,6 @@ import os
 import cv2
 from tkinter import messagebox
 from skimage.metrics import structural_similarity as ssim
-import numpy as np
 
 def match(path1): #                                    
     # read the images
@@ -33,6 +32,6 @@ def match(path1): #
             if score > best_score:
                 best_score = score
                 best_image = image
-                print("Print this here " + best_image, best_score) # remove later  
+                print("Print this here " + best_image, best_score) # prints to the terminal showing comparison   
     return float(best_score), path + best_image
 

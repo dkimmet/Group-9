@@ -1,17 +1,12 @@
 import tkinter as tk
-from tkinter.constants import COMMAND
 from tkinter.filedialog import askopenfilename
 from tkinter import messagebox
-import os
 import cv2
-from numpy import result_type
 from signature import match
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 
 # Mach Threshold
 THRESHOLD = 85
-
 
 def selectFile(filePath):
     filename = askopenfilename(filetypes=([
