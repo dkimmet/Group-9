@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter.constants import COMMAND
 from tkinter.filedialog import askopenfilename
 from tkinter import messagebox
 import os
@@ -12,20 +13,16 @@ import matplotlib.image as mpimg
 THRESHOLD = 85
 
 
-def browsefunc(ent):
+def selectFile(filePath):
     filename = askopenfilename(filetypes=([
-        ("image", ".jpeg"),
-        ("image", ".png"),
-        ("image", ".jpg"),
+        ("Signature Files", ("*.jpg", "*.png", "*.jpeg")),
     ]))
-    ent.delete(0, tk.END)
-    ent.insert(tk.END, filename)  # add this
+    filePath.delete(0, tk.END)
+    filePath.insert(0, filename)
+   
+def checkSimilarity(window, path1):
 
-
-
-def checkSimilarity(window, path1): #                  here path2
-
-    result, path3 = match(path1=path1)  #              here   , path2=path2
+    result, path3 = match(path1=path1) 
     print(result)
     if(result <= THRESHOLD):
         messagebox.showerror("Signatures Do Not Match",
@@ -36,21 +33,16 @@ def checkSimilarity(window, path1): #                  here path2
         img2 = cv2.imread(path3)
         # create figure
         fig = plt.figure(figsize=(10, 7))
-        #fig = pylab.gcf()
         fig.canvas.manager.set_window_title('Human Verification')
-  
         # setting values to rows and column variables
         rows = 1
         columns = 2
-
         fig.add_subplot(rows, columns, 1)
         plt.imshow(img1)
         plt.axis('off')
         plt.title("Received Signature from Doctor")
-
         # Adds a subplot at the 2nd position
         fig.add_subplot(rows, columns, 2)
-    
         # showing image
         plt.imshow(img2)
         plt.axis('off')
@@ -60,8 +52,6 @@ def checkSimilarity(window, path1): #                  here path2
     else:
         messagebox.showinfo("Success: Match Found",
                             "Signatures are "+str(result)+f" % similar!!")
-    #return True
-
 
 root = tk.Tk()
 root.title("Group 9 Verify Doctor Signature")
@@ -76,7 +66,6 @@ y = h/2 - size[1]/2
 root.geometry("%dx%d+%d+%d" % (size + (x, y)))
 #end of centering
 
-
 uname_label = tk.Label(root, text="Please upload a signature to compare \nagainst the database. "
 , font=("Helvetica", 14, "bold"))
 uname_label.place(x=85, y=50)
@@ -86,24 +75,13 @@ img1_message.place(x=10, y=120)
 
 image1_path_entry = tk.Entry(root, font=10)
 image1_path_entry.place(x=150, y=120)
-
+150
 img1_browse_button = tk.Button(
-    root, text="Browse", font=("Helvetica", 14), command=lambda: browsefunc(ent=image1_path_entry))
+    root, text="Browse", font=("Helvetica", 14), command=lambda: selectFile(filePath=image1_path_entry))
 img1_browse_button.place(x=400, y=120)
-"""
-image2_path_entry = tk.Entry(root, font=10)
-image2_path_entry.place(x=150, y=240)
-
-img2_message = tk.Label(root, text="Signature 2", font=("Helvetica", 14, "bold"))
-img2_message.place(x=10, y=250)
-
-
-img2_browse_button = tk.Button(
-    root, text="Browse", font=("Helvetica", 14), command=lambda: browsefunc(ent=image2_path_entry))
-img2_browse_button.place(x=400, y=240)"""
 
 compare_button = tk.Button(
-    root, text="Compare", font=10, command=lambda: checkSimilarity(window=root,
+    root, text="Compare", font=10,command=lambda: checkSimilarity(window=root,
                                                                    path1=image1_path_entry.get(),
                                                                    ))       # here path2=image2_path_entry.get(),
 
